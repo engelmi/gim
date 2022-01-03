@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/engelmi/gim/config"
+	"github.com/engelmi/gim/pkg/config"
 	gosqs "github.com/engelmi/go-sqs"
 	"github.com/gorilla/mux"
 	"github.com/pkg/errors"

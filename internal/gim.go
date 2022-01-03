@@ -1,12 +1,12 @@
-package gim
+package internal
 
 import (
 	"context"
 	"sync"
 
-	"github.com/engelmi/gim/config"
-	"github.com/engelmi/gim/gim/consumer"
-	"github.com/engelmi/gim/gim/producer"
+	"github.com/engelmi/gim/internal/consumer"
+	"github.com/engelmi/gim/internal/producer"
+	"github.com/engelmi/gim/pkg/config"
 )
 
 type GopherInTheMiddle struct {

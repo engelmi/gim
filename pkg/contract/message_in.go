@@ -1,4 +1,4 @@
-package consumer
+package contract
 
 import gosqs "github.com/engelmi/go-sqs"
 

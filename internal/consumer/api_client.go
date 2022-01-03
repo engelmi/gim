@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/engelmi/gim/pkg/contract"
 	"github.com/pkg/errors"
 )
 
@@ -23,7 +24,7 @@ func NewApiClient(forwardUrl string, timeout time.Duration) ApiClient {
 	}
 }
 
-func (client ApiClient) Send(msg IncomingMessage) error {
+func (client ApiClient) Send(msg contract.IncomingMessage) error {
 	payload, err := json.Marshal(msg)
 	if err != nil {
 		return err

@@ -4,12 +4,11 @@ import (
 	"context"
 	"sync"
 
-	"github.com/engelmi/gim/config"
+	"github.com/engelmi/gim/pkg/config"
 	gosqs "github.com/engelmi/go-sqs"
 	"github.com/pkg/errors"
 )
 
-// todo: rename to consumer
 type Consumer struct {
 	consumer []gosqs.Consumer
 }

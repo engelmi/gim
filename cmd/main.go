@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/engelmi/gim/config"
-	"github.com/engelmi/gim/gim"
+	"github.com/engelmi/gim/internal"
+	"github.com/engelmi/gim/pkg/config"
 )
 
 func main() {
@@ -17,7 +17,7 @@ func main() {
 		panic(fmt.Sprintf("Error: %+v", err))
 	}
 
-	gim, err := gim.NewGopherInTheMiddle(gimconf)
+	gim, err := internal.NewGopherInTheMiddle(gimconf)
 	if err != nil {
 		panic(fmt.Sprintf("Error: %+v", err))
 	}
