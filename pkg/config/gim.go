@@ -31,6 +31,15 @@ func FromFile(name string) (Gim, error) {
 	return gimConfig, nil
 }
 
+func FromJsonString(gimStr string) (Gim, error) {
+	var gimConfig Gim
+	err := json.Unmarshal([]byte(gimStr), &gimConfig)
+	if err != nil {
+		return Gim{}, err
+	}
+	return gimConfig, nil
+}
+
 type Queue struct {
 	Region    string `json:"region"`
 	Endpoint  string `json:"endpoint"`
