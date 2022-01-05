@@ -1,0 +1,12 @@
+@startuml produce
+title Produce
+
+database "SQS Queue" as SQS
+node "Pod" {
+  [Application] -left-> [GIM Sidecar]: 1
+  [GIM Sidecar] -right-> [Application]: 3
+}
+
+[GIM Sidecar] -left-> SQS: 2
+
+@enduml

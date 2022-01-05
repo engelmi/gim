@@ -1,0 +1,13 @@
+@startuml consume
+title Consume
+database "SQS Queue" as SQS
+node "Pod" {
+  [GIM Sidecar] -right-> [Application]: 2
+  [Application] -> [Application]: 3
+  [Application] -left-> [GIM Sidecar]: 4
+}
+
+SQS -right-> [GIM Sidecar]: 1
+[GIM Sidecar] -left-> SQS: 5
+
+@enduml

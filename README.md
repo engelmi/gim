@@ -7,5 +7,10 @@
 
 ## Features
 
+### Consume 
+![alt text](doc/consume.png "Consuming messages")
+
+### Produce
+![alt text](doc/produce.png "Producing messages")
 
 ## Usage
