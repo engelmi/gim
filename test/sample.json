@@ -51,5 +51,8 @@
         "sendTimeout": "3s"
       }
     ]
+  },
+  "gimlogger": {
+    "level": "debug"
   }
 }

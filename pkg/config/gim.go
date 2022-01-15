@@ -8,6 +8,7 @@ import (
 type Gim struct {
 	GimConsumer GimConsumer `json:"gimconsumer"`
 	GimProducer GimProducer `json:"gimproducer"`
+	Logger      Logger      `json:"gimlogger"`
 }
 
 func (gim Gim) ToFile(name string) error {

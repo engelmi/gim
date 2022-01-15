@@ -7,6 +7,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/engelmi/gim/internal/logger"
 	"github.com/engelmi/gim/pkg/config"
 	gosqs "github.com/engelmi/go-sqs"
 	"github.com/gorilla/mux"
@@ -24,13 +25,15 @@ func NewProducer(gimProducerConfig config.GimProducer) (Producer, error) {
 		if err != nil {
 			return Producer{}, errors.Wrap(err, "Could not create sqs producer")
 		}
-		router.Methods(http.MethodPost).Path(fmt.Sprintf("/%s/produce", producerConfig.ProducerName)).HandlerFunc(Handler(sqsProducer))
+		router.Methods(http.MethodPost).Path(fmt.Sprintf("/%s/produce", producerConfig.ProducerName)).HandlerFunc(Handler(sqsProducer, producerConfig))
 	}
 
 	server := http.Server{
 		Addr:    fmt.Sprintf(":%s", gimProducerConfig.Server.Port),
 		Handler: router,
 	}
+
+	logger.GetLogger().Info("Producer set up successfully")
 
 	return Producer{
 		server: server,
@@ -39,6 +42,7 @@ func NewProducer(gimProducerConfig config.GimProducer) (Producer, error) {
 
 func (s Producer) Start(ctx context.Context, wg *sync.WaitGroup) {
 	go s.server.ListenAndServe()
+	logger.GetLogger().Info(fmt.Sprintf("Started producer on port %s", s.server.Addr))
 
 	go func() {
 		<-ctx.Done()
@@ -46,7 +50,10 @@ func (s Producer) Start(ctx context.Context, wg *sync.WaitGroup) {
 		ctxWithTimeout, cancel := context.WithTimeout(ctx, 3*time.Second)
 		defer cancel()
 
+		logger.GetLogger().Info("Shutting down producer...")
 		s.server.Shutdown(ctxWithTimeout)
+		logger.GetLogger().Info("Finished shutting down producer")
+
 		wg.Done()
 	}()
 

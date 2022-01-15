@@ -5,6 +5,7 @@ import (
 	"sync"
 
 	"github.com/engelmi/gim/internal/consumer"
+	"github.com/engelmi/gim/internal/logger"
 	"github.com/engelmi/gim/internal/producer"
 	"github.com/engelmi/gim/pkg/config"
 )
@@ -32,6 +33,8 @@ func NewGopherInTheMiddle(gimConfig config.Gim) (GopherInTheMiddle, error) {
 }
 
 func (g GopherInTheMiddle) Start(ctx context.Context, wg *sync.WaitGroup) {
+	l := logger.GetLogger()
+
 	if wg == nil {
 		wg = &sync.WaitGroup{}
 	}
@@ -39,5 +42,6 @@ func (g GopherInTheMiddle) Start(ctx context.Context, wg *sync.WaitGroup) {
 	g.gimProducer.Start(ctx, wg)
 	g.gimConsumer.Start(ctx, wg)
 
+	l.Info("Gophers are ready and waiting to work")
 	wg.Wait()
 }
