@@ -1,0 +1,18 @@
+language: go
+
+env:
+  global:
+    - secure: "SnkaxBXcAFt5zcPs6OLlV9iSPlrsKaguk8htSQP1OvyPIm3R2FkPEZ2Q0va9RjscbYFvjM0BikR7gzvGnTZkuMAM1JZRU0BcozS/IBQdl5uexhG9rnggGwM1sahGpnEJWXjT8NYKfez7icOvz20Max4R3Zr8jU4WyR+tYlr/RKdHW7Qly2fP9Y3Da2mI76ivDGhhFWWRp1E6o3YxRo7GaPL3YRKcC8C3FR9B75Tdt1LqEVOcxcfEU5WFz3AQst032Vy921RId0wVxIAr9WqXJBnlxufRRG2Z1q1IXm3NZExiPAYgGNm1eM1vqLcNt0ibZY9Z3CDNZhm193S4V3EYmzsfOtJNwvn00jsiNFIjC1NDH8E1YfiCC/Zxv5731ZIoveZdXB2OiLgtIR6Au6MsQNxM9nMZHwLyiOK+lPtwknE3lHGFwFDRcXdbsqbYdXPQUCPWvmawtKp6vd29qg5hxBU87ztlKS+w0a438s4Pok+dxI8JlGO2OddVbFlHyov8bP7lF53pONKc7FlAkTQz8xbl9Y3+/0reP18eSV597XXCYX5Z966YGbgte2FQRA//u/JdPIAStWg7uT8QYJ+5TZQ01r5AW8MwzT0cUu/SWPYYJoPpxE9Xgk72E2Mqjult4wTt098qiDpwH5huZrdXwsuv14eLdxZ9Ib/25ICMbh8="
+    - secure: "OaMB/DBT8jIj5MJY95tDO4G28r3pqOrFR9BTDCGlQczTKPNMAcEMJEMqZI3+S5Fj3ke74NCv+DMi7SFZ534oXzNAQCOrTu1WYxAuflgQUIe8uA+ZYdOUbmhOTDgPxqMv3lIcrkd5BDvPRwigCLXDJORShEM2fgosH4eGXkV0Vm73Iui/nK5w4SZ6NGfVHkCB5ISaovfe1nTUakBe+7nS6JFlHqd3x8fNNIP7IORKQl32j6sqfwy88tFFsogRrG8SKKqlKo4/iqcMmY+iVqtERTgDtNxL0nV3FlUcGh4OGf3rpGAripR3mDr3Ufr3WOBXCVzitK2BeazIQhhQvLa7nkhzlgXqokkj2Ng4YdvnbRLkg/0ybeDbKkM3xyJQiRGjQ2YcvGEaGz91I32ZDxpiH0ysULJNNNknW/LHwEjXRBUR0Wo0zF/NVSuac4T6pYw22f13tc1agPbtVu7+2dwiRq3T5Tdg41yF5BmAV+xIj4e9+8cMjYwIzwhX1WK7Esmem3qvMSnZsHdskpMNHV57eqbxN53lACamJ6arQLpyejNifQ/Nw8SOkWMCM4SxhmcvtMlieF+5MXiqqA1Y1KdML2PVfyczYq++YqdB7rLfqUK2ln0UKfiS4H4fMxa/rTlfpfhDLvF9dJWlxIgaAF7bq4P7dotjI3if2LZhP48tX6g="
+
+services:
+  - docker
+
+script:
+  - docker build --no-cache -t engelmic/gim:latest .
+  - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USER" --password-stdin
+  - docker push engelmic/gim:latest
+
+branches:
+  only:
+    - main
