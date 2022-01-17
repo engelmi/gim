@@ -4,10 +4,10 @@
       {
         "queue": {
           "region": "eu-central-1",
-          "endpoint": "http://localhost:9324",
+          "endpoint": "http://elasticmq:9324",
           "queueName": "pink_panther"
         },
-        "forwardUrl": "http://localhost:9999/echo",
+        "forwardUrl": "http://localhost/post",
         "processingTimeout": "2s",
         "pollTimeout": "3s",
         "ackTimeout": "3s",
@@ -16,10 +16,10 @@
       {
         "queue": {
           "region": "eu-central-1",
-          "endpoint": "http://localhost:9324",
+          "endpoint": "http://elasticmq:9324",
           "queueName": "blue_rabbit"
         },
-        "forwardUrl": "http://localhost:9999/echo",
+        "forwardUrl": "http://localhost/post",
         "processingTimeout": "2s",
         "pollTimeout": "3s",
         "ackTimeout": "3s",
@@ -35,7 +35,7 @@
       {
         "queue": {
           "region": "eu-central-1",
-          "endpoint": "http://localhost:9324",
+          "endpoint": "http://elasticmq:9324",
           "queueName": "blue_rabbit"
         },
         "producerName": "bluerabbit",
@@ -44,14 +44,14 @@
       {
         "queue": {
           "region": "eu-central-1",
-          "endpoint": "http://localhost:9324",
+          "endpoint": "http://elasticmq:9324",
           "queueName": "pink_panther"
         },
         "producerName": "pinkpanther",
         "sendTimeout": "3s"
       }
     ]
-  },
+  }, 
   "gimlogger": {
     "level": "debug"
   }

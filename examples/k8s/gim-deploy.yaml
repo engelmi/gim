@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gim
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gim
+  template:
+    metadata:
+      labels:
+        app: gim
+    spec:
+      containers:
+      - name: httpbin
+        image: kennethreitz/httpbin
+        ports:
+          - name: http
+            containerPort: 80
+        resources:
+          limits:
+            cpu: 1
+            memory: 128Mi
+      - name: gim
+        image: engelmic/gim
+        env:
+          - name: GIMCONFIG
+            valueFrom:
+              configMapKeyRef:
+                name: gim-configmap
+                key: GIMCONFIG
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              configMapKeyRef:
+                name: gim-configmap
+                key: AWS_ACCESS_KEY_ID
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: gim-configmap
+                key: AWS_SECRET_ACCESS_KEY
+        ports:
+        - name: apiport 
+          containerPort: 8080
+        resources:
+          limits:
+            cpu: 1
+            memory: 128Mi   
+---

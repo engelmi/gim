@@ -1,3 +1,0 @@
-# gim - Examples
-
-tbd

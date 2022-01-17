@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gim-configmap
+data:
+  AWS_ACCESS_KEY_ID: foo
+  AWS_SECRET_ACCESS_KEY: bar
+  GIMCONFIG: |
+    {
+      "gimconsumer": {
+        "consumer": [
+          {
+            "queue": {
+              "region": "eu-central-1",
+              "endpoint": "http://elasticmq:9324",
+              "queueName": "pink_panther"
+            },
+            "forwardUrl": "http://localhost/post",
+            "processingTimeout": "2s",
+            "pollTimeout": "3s",
+            "ackTimeout": "3s",
+            "bulkReadSize": 10
+          },
+          {
+            "queue": {
+              "region": "eu-central-1",
+              "endpoint": "http://elasticmq:9324",
+              "queueName": "blue_rabbit"
+            },
+            "forwardUrl": "http://localhost/post",
+            "processingTimeout": "2s",
+            "pollTimeout": "3s",
+            "ackTimeout": "3s",
+            "bulkReadSize": 10
+          }
+        ]
+      },
+      "gimproducer": {
+        "server": {
+          "port": "8080"
+        },
+        "producer": [
+          {
+            "queue": {
+              "region": "eu-central-1",
+              "endpoint": "http://elasticmq:9324",
+              "queueName": "blue_rabbit"
+            },
+            "producerName": "bluerabbit",
+            "sendTimeout": "3s"
+          },
+          {
+            "queue": {
+              "region": "eu-central-1",
+              "endpoint": "http://elasticmq:9324",
+              "queueName": "pink_panther"
+            },
+            "producerName": "pinkpanther",
+            "sendTimeout": "3s"
+          }
+        ]
+      }, 
+      "gimlogger": {
+        "level": "debug"
+      }
+    }

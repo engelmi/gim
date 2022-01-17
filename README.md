@@ -15,10 +15,10 @@ docker run -p <host-port>:<gim-producer-port> \
   -e AWS_SECRET_ACCESS_KEY='bar' \
   engelmic/gim
 ```
-Where `<config-string>` contains the configuration for all consumer and producer as well as the logger. The config definition can be seen in [pkg/config/gim.go](pkg/config/gim.go) and [examples/sample-config.json](examples/sample-config.json) contains an example configuration. 
+Where `<config-string>` contains the configuration for all consumer and producer as well as the logger. The config definition can be seen in [pkg/config/gim.go](pkg/config/gim.go) and [examples/config/sample.json](examples/config/sample.json) contains an example configuration. 
 
 ### As a sidecar
-tbd
+An example on how to use `gim` as a sidecar can be seen [here](examples/k8s/README.md).
 
 ## Features
 
