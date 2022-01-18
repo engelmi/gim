@@ -10,8 +10,10 @@ services:
 
 script:
   - docker build --no-cache -t engelmic/gim:latest .
+  - if [ -n "$TRAVIS_TAG" ]; then docker tag engelmic/gim:latest engelmic/gim:${TRAVIS_TAG}; fi
   - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USER" --password-stdin
   - docker push engelmic/gim:latest
+  - if [ -n "$TRAVIS_TAG" ]; then docker push engelmic/gim:${TRAVIS_TAG}; fi
 
 branches:
   only:
