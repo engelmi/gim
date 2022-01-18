@@ -17,4 +17,4 @@ script:
 
 branches:
   only:
-    - main
+    - v0\.[0-9]+\.[0-9]+
